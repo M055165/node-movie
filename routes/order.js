@@ -53,4 +53,21 @@ router.post('/add',function(req,res){
     })
   })
 
+  router.get('/page/:page',function(req,res){
+    let resultData = "";
+    var paraPage = (req.params["page"]);
+    let num = 7*(parseInt(paraPage)-1)+(parseInt(paraPage));
+    let sql = `Select * From myorder Limit ${num},8 `;
+    console.log(sql)
+    con.query(sql,function(err,data){
+      if(err){
+        console.log(err)
+      }else {
+        resultData = data;
+        console.log(resultData)
+        res.json(resultData)
+      }
+    })
+  })
+
   module.exports = router;
