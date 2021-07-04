@@ -53,11 +53,12 @@ router.post('/add',function(req,res){
     })
   })
 
-  router.get('/page/:page',function(req,res){
+  router.get('/page/:account/:page',function(req,res){
     let resultData = "";
-    var paraPage = (req.params["page"]);
-    let num = 7*(parseInt(paraPage)-1)+(parseInt(paraPage));
-    let sql = `Select * From myorder Limit ${num},8 `;
+    let paramPage = (req.params["page"]);
+    let paramAccount = (req.params["account"]);
+    let num = 7*(parseInt(paramPage)-1)+(parseInt(paramPage));
+    let sql = `Select * From myorder where account = '${paramAccount}' Limit ${num-1},8 `;
     console.log(sql)
     con.query(sql,function(err,data){
       if(err){

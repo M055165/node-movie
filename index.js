@@ -7,7 +7,7 @@ let cookieParser = require("cookie-parser")
 let session = require('express-session')
 
 app.use(cors({
-  origin: ['http://192.168.43.145:8080'],
+  origin: ['http://localhost:8080'],
 }))
 app.use(cookieParser());
 app.use(session({
